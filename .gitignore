@@ -1,3 +1,17 @@
+of
+ofApp
+
+*~
+*.txt.user
+*.DS_Store
+.idea
+
+*/build/*
+*/debug/*
+*/cmake-build*/*
+
+*/bin/*
+!bin/data/
 # Prerequisites
 *.d
 
