@@ -34,11 +34,12 @@ void ofApp::mouseMoved(ofMouseEventArgs& mouse)
 {
 }
 
-void ofApp::mouseDragged(ofMouseEventArgs& mouse)
+void ofApp::mousePressed(int x, int y, int button)
 {
+
 }
 
-void ofApp::mousePressed(int x, int y, int button)
+void ofApp::mouseDragged(int x, int y, int button)
 {
   switch(button) {
     case 0:

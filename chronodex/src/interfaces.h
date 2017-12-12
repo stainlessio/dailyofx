@@ -8,6 +8,13 @@
 //  float lengthDegrees;
 //};
 
+enum class ConnectorDirection {
+    NW,
+    NE,
+    SE,
+    SW
+};
+
 class IDrawable {
   public:
     virtual ~IDrawable() = default;
@@ -27,6 +34,7 @@ class IConnector : public IDrawable, public IUpdatable {
     virtual ofPoint basePoint() const = 0;
     virtual IConnector& endPoint(ofPoint position) = 0;
     virtual ofPoint endPoint() const = 0;
+    virtual ConnectorDirection direction() const = 0;
 };
 
 class ILabel : public IDrawable, public IUpdatable {

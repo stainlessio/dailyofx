@@ -15,7 +15,7 @@ class ofApp : public ofBaseApp
     void keyReleased( ofKeyEventArgs& );
 
     void mouseMoved( ofMouseEventArgs& );
-    void mouseDragged( ofMouseEventArgs& );
+    void mouseDragged(int x, int y, int button);
     void mousePressed(int x, int y, int button);
     void mouseReleased( ofMouseEventArgs& );
     void mouseScrolled( ofMouseEventArgs& );
