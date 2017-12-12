@@ -68,16 +68,19 @@ class LabelImpl : public ILabel {
     ofPoint m_labelPosition;
 
     inline ofPoint calculate_label_position() {
-      if (pointsLeft())
-        return m_connector->basePoint() + S_LABEL_PADDING;
-
-      float width = 100.0f;
-      return m_connector->basePoint() - width - S_LABEL_PADDING;
-    }
-
-    inline bool pointsLeft() {
-      float angle = m_connector->basePoint().angle(m_connector->endPoint());
-      return angle - 90.0f < 0;
+      ofPoint retval = m_connector->basePoint();
+      retval.y += 5; // Center vertically
+      switch (m_connector->direction()) {
+        case ConnectorDirection::NE:
+        case ConnectorDirection::SE:
+          retval.x += 5;
+          break;
+        case ConnectorDirection::NW:
+        case ConnectorDirection::SW:
+          retval.x -= (float)m_value.length() * 10.0f;
+          break;
+      }
+      return retval;
     }
 };
 
