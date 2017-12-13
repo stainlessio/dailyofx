@@ -2,22 +2,22 @@
 #include "constructors.h"
 #include "interfaces.h"
 
-class LabelImpl : public ILabel {
+class Label : public ILabel {
   public:
     static float S_LABEL_PADDING;
 
-    LabelImpl(std::string text)
-      : LabelImpl(text, new_connector({0,0}, {0,1}))
+    Label(std::string text)
+      : Label(text, new_connector({0,0}, {0,1}))
     { }
 
-    LabelImpl(std::string text, IConnector *connector)
+    Label(std::string text, IConnector *connector)
       : m_value(text)
       , m_connector(connector)
     {
 
     }
 
-    ~LabelImpl() override {
+    ~Label() override {
       if (m_connector != nullptr) {
         delete m_connector;
       }
@@ -40,18 +40,18 @@ class LabelImpl : public ILabel {
       }
     }
 
-    ILabel* text(std::string value) override {
+    ILabel& text(std::string value) override {
       m_value = value;
-      return this;
+      return *this;
     }
 
     const std::string text() const override {
       return m_value;
     }
 
-    ILabel* connector(IConnector &connector) override {
+    ILabel& connector(IConnector &connector) override {
       m_connector = &connector;
-      return this;
+      return *this;
     }
 
     const IConnector& connector() const override {
@@ -84,13 +84,13 @@ class LabelImpl : public ILabel {
     }
 };
 
-float LabelImpl::S_LABEL_PADDING = 10.0f;
+float Label::S_LABEL_PADDING = 10.0f;
 
 ILabel *new_label(std::string text, ofPoint basePosition, ofPoint labelPosition) {
   IConnector* connector = new_connector(basePosition, labelPosition);
-  return new LabelImpl(text, connector);
+  return new Label(text, connector);
 }
 
 ILabel *new_label(std::string text, IConnector *connector) {
-  return new LabelImpl(text, connector);
+  return new Label(text, connector);
 }

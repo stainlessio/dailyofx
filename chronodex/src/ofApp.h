@@ -33,5 +33,5 @@ class ofApp : public ofBaseApp
     void messageReceived( ofMessage& );
 
   private:
-    ILabel *label;
+    ISection *section;
 };

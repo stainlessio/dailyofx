@@ -11,7 +11,7 @@ include(${OF_ROOT}/openFrameworks.cmake)
 set(SOURCES
     src/main.cpp
     src/ofApp.cpp
-    src/interfaces.h src/label.cpp src/constructors.h src/connector.cpp)
+    src/interfaces.h src/label.cpp src/constructors.h src/connector.cpp src/section.cpp)
 
 add_executable(
     ${PROJECT_NAME}

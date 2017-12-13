@@ -106,8 +106,8 @@ class Connector : public IConnector
     }
 };
 
-float Connector::S_ANGLE_THRESHOLD = 25.0f;
-float Connector::S_DISTANCE_THRESHOLD = 100.0f;
+float Connector::S_ANGLE_THRESHOLD = 15.0f;
+float Connector::S_DISTANCE_THRESHOLD = 50.0f;
 
 IConnector *new_connector(ofPoint basePoint, ofPoint endPoint)
 {

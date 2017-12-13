@@ -3,10 +3,10 @@
 #include <string>
 #include <types/ofBaseTypes.h>
 
-//struct SectionSpecification {
-//  float startAngleDegrees;
-//  float lengthDegrees;
-//};
+struct SectionSpecification {
+  float startAngleDegrees;
+  float lengthDegrees;
+};
 
 enum class ConnectorDirection {
     NW,
@@ -40,19 +40,19 @@ class IConnector : public IDrawable, public IUpdatable {
 class ILabel : public IDrawable, public IUpdatable {
   public:
     virtual ~ILabel() = default;
-    virtual ILabel* text(std::string value) = 0;
+    virtual ILabel& text(std::string value) = 0;
     virtual const std::string text() const = 0;
-    virtual ILabel* connector(IConnector &connector) = 0;
+    virtual ILabel& connector(IConnector &connector) = 0;
     virtual const IConnector& connector() const = 0;
     virtual IConnector& connectorMut() const = 0;
 };
 
-//class ISection : public IDrawable, public IUpdatable {
-//  public:
-//    virtual ~ISection() = 0;
-//    virtual void specification(SectionSpecification spec) = 0;
-//    virtual const SectionSpecification specification() = 0;
-//
-//    virtual void color(ofColor color) = 0;
-//    virtual const ofColor color() = 0;
-//};
+class ISection : public IDrawable, public IUpdatable {
+  public:
+    virtual ~ISection() = default;
+    virtual ISection& specification(SectionSpecification spec) = 0;
+    virtual const SectionSpecification specification() = 0;
+
+    virtual ISection& color(ofColor color) = 0;
+    virtual const ofColor color() = 0;
+};

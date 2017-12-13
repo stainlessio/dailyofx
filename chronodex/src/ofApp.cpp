@@ -5,17 +5,24 @@ void ofApp::setup()
 {
   ofEnableSmoothing();
   ofBackground(240,240,240);
-  label = new_label("Test", ofPoint(250, 250), ofPoint(100, 100));
+  section = new_section(
+    { 0.0f, 90.0f },
+    ofColor::powderBlue,
+    "test");
 }
 
 void ofApp::update()
 {
-  label->update();
+  section->update();
 }
 
 void ofApp::draw()
 {
-  label->draw();
+  ofPushMatrix();
+  // Center Drawing
+  ofTranslate(ofGetWidth() / 2.0f, ofGetHeight() / 2.0f, 0);
+    section->draw();
+  ofPopMatrix();
 }
 
 void ofApp::exit()
@@ -32,6 +39,12 @@ void ofApp::keyReleased(ofKeyEventArgs& key)
 
 void ofApp::mouseMoved(ofMouseEventArgs& mouse)
 {
+  float x = mouse.x;
+  float y = mouse.y;
+  float startAngle = ofMap(x, 0, ofGetWidth(), 0, 360);
+  float length = ofMap(y, 0, ofGetHeight(), 0, 360);
+  SectionSpecification spec {startAngle, length};
+  section->specification(spec);
 }
 
 void ofApp::mousePressed(int x, int y, int button)
@@ -41,14 +54,6 @@ void ofApp::mousePressed(int x, int y, int button)
 
 void ofApp::mouseDragged(int x, int y, int button)
 {
-  switch(button) {
-    case 0:
-      label->connectorMut().basePoint(ofPoint(x, y));
-      break;
-    case 2:
-      label->connectorMut().endPoint(ofPoint(x, y));
-      break;
-  }
 }
 
 void ofApp::mouseReleased(ofMouseEventArgs& mouse)
